@@ -35,7 +35,7 @@ TEMPLATE_DIRS = (
 )
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [get_env('DJANGO_ALLOWED_HOSTS', '*')]
 
 
 # Application definition
