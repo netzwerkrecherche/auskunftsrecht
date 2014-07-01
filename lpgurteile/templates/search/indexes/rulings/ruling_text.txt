@@ -1,0 +1,4 @@
+{{ object.file_reference }}
+{{ object.subject }}
+{{ object.content }}
+{{ object.text }}
