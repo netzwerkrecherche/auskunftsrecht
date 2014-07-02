@@ -8,7 +8,7 @@ from rulings.models import Ruling
 
 
 class Command(BaseCommand):
-    help = "Import CSV"
+    help = "Import JSON"
 
     def handle(self, *args, **options):
         translation.activate(settings.LANGUAGE_CODE)
