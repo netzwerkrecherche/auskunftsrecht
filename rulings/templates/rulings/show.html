@@ -3,14 +3,14 @@
 {% block body %}
 
 <div class="page-header">
-  <h1>
+  <h2>
     {{ object.file_reference }}
     <small>{{ object.court }}</small>
-  </h1>
+  </h2>
 </div>
 
 <div class="row">
-  <div class="col-lg-4 col-md-4">
+  <div class="col-lg-3 col-md-4">
     {% include "rulings/_granted.html" with granted=object.granted %}
     <dl>
       <dt>Gegenstand</dt>
@@ -33,7 +33,7 @@
       {% endif %}
     </dl>
   </div>
-  <div class="col-lg-8 col-md-8">
+  <div class="col-lg-9 col-md-8">
     <h4>Zusammenfassung</h4>
     <div class="well">
       {{ object.content }}
