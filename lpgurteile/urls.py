@@ -4,17 +4,15 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from haystack.forms import FacetedSearchForm
-from haystack.views import FacetedSearchView
-
 admin.autodiscover()
+
 
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'lpgurteile.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^$', FacetedSearchView(form_class=FacetedSearchForm), name='haystack_search'),
+    url(r'^$', 'rulings.views.search', name='haystack_search'),
 
     url(r'^urteil/', include('rulings.urls')),
 

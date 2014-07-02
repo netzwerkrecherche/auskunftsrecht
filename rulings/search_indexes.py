@@ -10,7 +10,7 @@ class RulingIndex(indexes.SearchIndex, indexes.Indexable):
     date = indexes.DateTimeField(model_attr='date', null=True)
     court = indexes.CharField(model_attr='court', faceted=True)
     jurisdiction = indexes.CharField(model_attr='jurisdiction', faceted=True)
-    granted = indexes.CharField(model_attr='granted')
+    granted = indexes.CharField(model_attr='granted', faceted=True)
     subject = indexes.CharField(model_attr='subject')
     content = indexes.CharField(model_attr='content')
 

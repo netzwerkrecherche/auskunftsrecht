@@ -1,6 +1,45 @@
 {% extends "base.html" %}
 
 {% block body %}
-<h1>{{ object.file_reference }}</h1>
-<pre>{{ object.text }}</pre>
+
+<div class="page-header">
+  <h1>
+    {{ object.file_reference }}
+    <small>{{ object.court }}</small>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-lg-4 col-md-4">
+    <dl>
+      <dt>Gegenstand</dt>
+      <dd>
+        {{ object.subject }}
+      </dd>
+      <dt>Urteil im Volltext</dt>
+      <dd>
+        <a href="{{ object.filename }}">
+          {{ object.file_reference }}
+        </a>
+      </dd>
+      {% if object.value %}
+        <dt>Streitwert</dt>
+        <dd>{{ object.value }} {{ object.value_currency }}</dd>
+      {% endif %}
+      <dt>Auskunft erteilt?</dt>
+      <dd>{{ object.granted }}</dd>
+      {% if object.jurisdiction %}
+        <dt>Ebene</dt>
+        <dd>{{ object.jurisdiction }}</dd>
+      {% endif %}
+    </dl>
+  </div>
+  <div class="col-lg-8 col-md-8">
+    <h4>Zusammenfassung</h4>
+    <div class="well">
+      {{ object.content }}
+    </div>
+  </div>
+</div>
+
 {% endblock %}
