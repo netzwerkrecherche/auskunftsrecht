@@ -5,7 +5,7 @@
 {% block body %}
     <div class="row">
         <div class="col-lg-6 col-lg-offset-2">
-            <h2>Suche</h2>
+            <h2>Suche in Urteilen zu Landespressegesetzen</h2>
             <form method="get" action=".">
                 <div class="input-group">
                     {{ form.q }}
@@ -17,14 +17,24 @@
         </div>
     </div>
     {% if query %}
-
-        <div class="row">
+        <div class="row" style="margin-top: 2em">
             <div class="col-lg-2 col-md-3">
                 <dl>
+                    {% if facets.fields.granted %}
+                        <dt>Auskunft erteilt</dt>
+                        {% for facet in facets.fields.granted %}
+                            <dd>
+                                <a href="{{ request.get_full_path }}&amp;selected_facets=granted_exact:{{ facet.0|urlencode }}">
+                                    {{ facet.0 }}</a> ({{ facet.1 }})
+                            </dd>
+                        {% endfor %}
+                    {% endif %}
                     {% if facets.fields.jurisdiction %}
                         <dt>Ebenen</dt>
                         {% for facet in facets.fields.jurisdiction %}
-                            <dd><a href="{{ request.get_full_path }}&amp;selected_facets=jurisdiction_exact:{{ facet.0|urlencode }}">{{ facet.0 }}</a> ({{ facet.1 }})</dd>
+                            {% if facet.0 %}
+                                <dd><a href="{{ request.get_full_path }}&amp;selected_facets=jurisdiction_exact:{{ facet.0|urlencode }}">{{ facet.0 }}</a> ({{ facet.1 }})</dd>
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                     {% if facets.fields.court %}
@@ -32,13 +42,6 @@
                         {# Provide only the top 5 authors #}
                         {% for facet in facets.fields.court %}
                             <dd><a href="{{ request.get_full_path }}&amp;selected_facets=court_exact:{{ facet.0|urlencode }}">{{ facet.0 }}</a> ({{ facet.1 }})</dd>
-                        {% endfor %}
-                    {% endif %}
-                    {% if facets.fields.granted %}
-                        <dt>Auskunft erteilt</dt>
-                        {# Provide only the top 5 authors #}
-                        {% for facet in facets.fields.granted %}
-                            <dd><a href="{{ request.get_full_path }}&amp;selected_facets=granted_exact:{{ facet.0|urlencode }}">{{ facet.0 }}</a> ({{ facet.1 }})</dd>
                         {% endfor %}
                     {% endif %}
                 </dl>
@@ -57,21 +60,15 @@
                             </small>
                         </h4>
                         <p class="text-muted">
+                            {% include "rulings/_granted.html" with granted=result.granted %}
                             {% highlight result.text with query %}
                         </p>
                     </li>
                 {% endfor %}
                 </ol>
+                {% include "pagination.html" with page_obj=page %}
             </div>
         </div>
-
-        {% if page.has_previous or page.has_next %}
-            <div>
-                {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
-                |
-                {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
-            </div>
-        {% endif %}
     {% else %}
         {# Show some example queries to run, maybe query syntax, something else? #}
     {% endif %}

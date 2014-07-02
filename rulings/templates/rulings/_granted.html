@@ -1,0 +1,7 @@
+{% if granted == "JA" %}
+  <span class="label label-success">Erfolgreich</span>
+{% elif granted == "NEIN" %}
+  <span class="label label-danger">Abgelehnt</span>
+{% else %}
+  <span class="label label-default">Teilweise erteilt</span>
+{% endif %}

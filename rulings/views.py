@@ -1,3 +1,6 @@
+from urllib import urlencode
+from urlparse import urlparse, parse_qsl
+
 from django.shortcuts import render, get_object_or_404
 
 from haystack.query import SearchQuerySet
@@ -15,7 +18,15 @@ default_sqs = (SearchQuerySet()
 
 
 class RulingSearchView(FacetedSearchView):
-    pass
+    results_per_page = 15
+
+    def extra_context(self):
+        extra = super(RulingSearchView, self).extra_context()
+        d = dict(parse_qsl(urlparse(self.request.get_full_path()).query))
+        d.pop('page', None)
+        extra['getvars'] = '&' + urlencode([
+            (k.encode('utf-8'), v.encode('latin1')) for k, v in d.items()])
+        return extra
 
 search = RulingSearchView(form_class=RulingSearchForm,
                           searchqueryset=default_sqs)
