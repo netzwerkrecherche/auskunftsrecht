@@ -103,7 +103,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "public", "static")
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, "files"))
 MEDIA_URL = get_env('MEDIA_URL', '/media/')
 
-FILE_URL_PREFIX = get_env('FILE_URL_PREFIX', 'http://auskunftsrecht.netzwerkrecherche.de/')
+FILE_URL_PREFIX = get_env('FILE_URL_PREFIX', 'http://auskunftsrechturteile.netzwerkrecherche.de/')
 
 
 HAYSTACK_CONNECTIONS = {
