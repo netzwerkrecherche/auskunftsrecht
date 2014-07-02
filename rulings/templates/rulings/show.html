@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
+{% block title %}Urteil {{ object.file_reference }}{% endblock %}
+
+{% block additional_meta %}
+<meta name="description" content="{{ object.subject }} - {{ object.content }}">
+
+{% endblock %}
+
 {% block body %}
 
 <div class="page-header">
@@ -11,6 +18,9 @@
 
 <div class="row">
   <div class="col-lg-3 col-md-4">
+    <p>
+      <a href="{% url 'haystack_search' %}">Zurück zur Suche</a>
+    </p>
     {% include "rulings/_granted.html" with granted=object.granted %}
     <dl>
       <dt>Gegenstand</dt>
@@ -36,7 +46,7 @@
   <div class="col-lg-9 col-md-8">
     <h4>Zusammenfassung</h4>
     <div class="well">
-      {{ object.content }}
+      {{ object.content|linebreaks }}
     </div>
   </div>
 </div>
