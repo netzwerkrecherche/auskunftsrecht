@@ -11,6 +11,7 @@
 
 <div class="row">
   <div class="col-lg-4 col-md-4">
+    {% include "rulings/_granted.html" with granted=object.granted %}
     <dl>
       <dt>Gegenstand</dt>
       <dd>
@@ -18,7 +19,7 @@
       </dd>
       <dt>Urteil im Volltext</dt>
       <dd>
-        <a href="{{ object.filename }}">
+        <a href="{{ FILE_URL_PREFIX }}{{ object.filename }}">
           {{ object.file_reference }}
         </a>
       </dd>
@@ -26,8 +27,6 @@
         <dt>Streitwert</dt>
         <dd>{{ object.value }} {{ object.value_currency }}</dd>
       {% endif %}
-      <dt>Auskunft erteilt?</dt>
-      <dd>{{ object.granted }}</dd>
       {% if object.jurisdiction %}
         <dt>Ebene</dt>
         <dd>{{ object.jurisdiction }}</dd>

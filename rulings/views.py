@@ -2,6 +2,7 @@ from urllib import urlencode
 from urlparse import urlparse, parse_qsl
 
 from django.shortcuts import render, get_object_or_404
+from django.conf import settings
 
 from haystack.query import SearchQuerySet
 from haystack.views import FacetedSearchView
@@ -34,4 +35,7 @@ search = RulingSearchView(form_class=RulingSearchForm,
 
 def show_ruling(request, slug):
     obj = get_object_or_404(Ruling, slug=slug)
-    return render(request, 'rulings/show.html', {'object': obj})
+    return render(request, 'rulings/show.html', {
+        'object': obj,
+        'FILE_URL_PREFIX': settings.FILE_URL_PREFIX
+    })
