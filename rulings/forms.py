@@ -16,3 +16,14 @@ class RulingSearchForm(FacetedSearchForm):
 
     def search(self):
         return super(RulingSearchForm, self).search().highlight()
+
+    def no_query_found(self):
+        """
+        Determines the behavior when no query was found.
+
+        By default, no results are returned (``EmptySearchQuerySet``).
+
+        Should you want to show all results, override this method in your
+        own ``SearchForm`` subclass and do ``return self.searchqueryset.all()``.
+        """
+        return self.searchqueryset.all()

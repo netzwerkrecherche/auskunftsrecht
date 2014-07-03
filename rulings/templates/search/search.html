@@ -18,68 +18,68 @@
             </form>
         </div>
     </div>
-    {% if query %}
-        <div class="row" style="margin-top: 2em">
-            <div class="col-lg-2 col-md-3">
-                <p class="badge">
-                    {{ page.paginator.count }} Ergebnisse
-                </p>
-                <dl>
-                    {% if facets.fields.granted %}
-                        <dt>Auskunft erteilt</dt>
-                        {% for facet in facets.fields.granted %}
-                            <dd>
-                                <a href="?selected_facets=granted_exact:{{ facet.0|urlencode }}{{ getvars }}">
-                                    {{ facet.0 }}</a> ({{ facet.1 }})
-                            </dd>
-                        {% endfor %}
-                    {% endif %}
-                    {% if facets.fields.jurisdiction %}
-                        <dt>Ebenen</dt>
-                        {% for facet in facets.fields.jurisdiction %}
-                            {% if facet.0 %}
-                                <dd><a href="?selected_facets=jurisdiction_exact:{{ facet.0|urlencode }}{{ getvars }}">{{ facet.0 }}</a> ({{ facet.1 }})</dd>
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
-                    {% if facets.fields.court %}
-                        <dt>Gerichte</dt>
-                        {# Provide only the top 5 authors #}
-                        {% for facet in facets.fields.court %}
-                            <dd><a href="?selected_facets=court_exact:{{ facet.0|urlencode }}{{ getvars }}">{{ facet.0 }}</a> ({{ facet.1 }})</dd>
-                        {% endfor %}
-                    {% endif %}
-                </dl>
-            </div>
-            <div class="col-lg-10 col-md-9">
-                {% if page.object_list %}
-                    <ol class="list-unstyled">
-                    {% for result in page.object_list %}
-                        <li>
-                            <h4>
-                                <a href="{{ result.object.get_absolute_url }}">
-                                    {{ result.object.file_reference }}
-                                </a>
-                                <small>
-                                    {{ result.object.court }}
-                                </small>
-                            </h4>
-                            <p class="text-muted">
-                                {% include "rulings/_granted.html" with granted=result.granted %}
-                                {% highlight result.text with query %}
-                            </p>
-                        </li>
+    <div class="row" style="margin-top: 2em">
+        <div class="col-lg-2 col-md-3">
+            <p class="badge">
+                {{ page.paginator.count }} Urteile
+            </p>
+            <dl>
+                {% if facets.fields.granted %}
+                    <dt>Auskunft erteilt</dt>
+                    {% for facet in facets.fields.granted %}
+                        <dd>
+                            <a href="?selected_facets=granted_exact:{{ facet.0|urlencode }}{{ getvars }}">
+                                {{ facet.0 }}</a> ({{ facet.1 }})
+                        </dd>
                     {% endfor %}
-                    </ol>
-                    {% if page.has_previous or page.has_next %}
-                        {% include "pagination.html" with page_obj=page %}
-                    {% endif %}
-                {% else %}
-                    <p>Keine Urteile gefunden</p>
                 {% endif %}
-            </div>
+                {% if facets.fields.jurisdiction %}
+                    <dt>Ebenen</dt>
+                    {% for facet in facets.fields.jurisdiction %}
+                        {% if facet.0 %}
+                            <dd><a href="?selected_facets=jurisdiction_exact:{{ facet.0|urlencode }}{{ getvars }}">{{ facet.0 }}</a> ({{ facet.1 }})</dd>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if facets.fields.court %}
+                    <dt>Gerichte</dt>
+                    {# Provide only the top 5 authors #}
+                    {% for facet in facets.fields.court %}
+                        <dd><a href="?selected_facets=court_exact:{{ facet.0|urlencode }}{{ getvars }}">{{ facet.0 }}</a> ({{ facet.1 }})</dd>
+                    {% endfor %}
+                {% endif %}
+            </dl>
         </div>
-    {% else %}
-        {# Show some example queries to run, maybe query syntax, something else? #}
-    {% endif %}
+        <div class="col-lg-10 col-md-9">
+            {% if page.object_list %}
+                <ol class="list-unstyled">
+                {% for result in page.object_list %}
+                    <li>
+                        <h4>
+                            <a href="{{ result.object.get_absolute_url }}">
+                                {{ result.object.file_reference }}
+                            </a>
+                            <small>
+                                {{ result.object.court }}
+                            </small>
+                        </h4>
+                        <p class="text-muted">
+                            {% include "rulings/_granted.html" with granted=result.granted %}
+                            {% if query %}
+                                {% highlight result.text with query %}
+                            {% else %}
+                                {{ result.subject }}
+                            {% endif %}
+                        </p>
+                    </li>
+                {% endfor %}
+                </ol>
+                {% if page.has_previous or page.has_next %}
+                    {% include "pagination.html" with page_obj=page %}
+                {% endif %}
+            {% else %}
+                <p>Keine Urteile gefunden</p>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
