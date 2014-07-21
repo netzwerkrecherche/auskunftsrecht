@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="row" style="margin-top: 2em">
-        <div class="col-lg-2 col-md-3">
+        <div class="col-lg-2 col-md-3 col-sm-3">
             <p class="badge">
                 {{ page.paginator.count }} Urteile
             </p>
@@ -50,7 +50,7 @@
                 {% endif %}
             </dl>
         </div>
-        <div class="col-lg-10 col-md-9">
+        <div class="col-lg-10 col-md-9 col-sm-9">
             {% if page.object_list %}
                 <ol class="list-unstyled">
                 {% for result in page.object_list %}
