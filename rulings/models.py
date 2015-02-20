@@ -38,6 +38,12 @@ class RulingManager(models.Manager):
         else:
             ruling.value = None
         ruling.slug = slugify(ruling.file_reference)
+
+        link = row.get('Verlinkung', '').strip()
+        if link:
+            prev = Ruling.objects.get(file_reference=link)
+            ruling.previous = prev
+
         ruling.save()
         return ruling
 
@@ -62,6 +68,7 @@ class Ruling(models.Model):
     content = models.TextField(blank=True)
     filename = models.CharField(max_length=255, blank=True)
     text = models.TextField(blank=True)
+    previous = models.ForeignKey('self', null=True, related_name="next")
 
     objects = RulingManager()
 

@@ -37,6 +37,16 @@
         <dt>Streitwert</dt>
         <dd>{{ object.value }} {{ object.value_currency }}</dd>
       {% endif %}
+      {% if object.previous %}
+        <dt>Urteil früherer Instanz</dt>
+        <dd><a href="{{ object.previous.get_absolute_url }}">{{ object.previous }}</a></dd>
+      {% endif %}
+      {% with next=object.next.all %}
+        {% if next %}
+          <dt>Urteil nächster Instanz</dt>
+          <dd><a href="{{ next.0.get_absolute_url }}">{{ next.0 }}</a></dd>
+        {% endif %}
+      {% endwith %}
       {% if object.jurisdiction %}
         <dt>Ebene</dt>
         <dd>{{ object.jurisdiction }}</dd>
