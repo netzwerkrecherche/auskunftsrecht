@@ -9,7 +9,7 @@ from django.conf import settings
 
 
 class Command(BaseCommand):
-    help = "Extract CSV"
+    help = "Extract CSV: python manage.py extract_ruling <csv_file> <path>"
 
     def handle(self, *args, **options):
         translation.activate(settings.LANGUAGE_CODE)

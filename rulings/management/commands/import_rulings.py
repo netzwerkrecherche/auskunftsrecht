@@ -1,4 +1,5 @@
 import json
+import sys
 
 from django.core.management.base import BaseCommand
 from django.utils import translation
@@ -8,13 +9,15 @@ from rulings.models import Ruling
 
 
 class Command(BaseCommand):
-    help = "Import JSON"
+    help = "Import JSON: python manage.py import_ruling [filename|stdin]"
 
     def handle(self, *args, **options):
         translation.activate(settings.LANGUAGE_CODE)
-
-        filename = args[0]
-        for row in json.load(file(filename)):
+        if len(args) > 0:
+            json_file = file(args[0])
+        else:
+            json_file = sys.stdin
+        for row in json.load(json_file):
             ruling = None
             try:
                 ruling = Ruling.objects.get(
