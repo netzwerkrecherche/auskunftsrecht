@@ -26,7 +26,27 @@
   {% block base_body %}
     <div class="main container">
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-8">
+          <h1>Auskunfts&shy;recht&shy;datenbank</h1>
+          <p>Oft verweigern Behörden Auskünfte auf Anfragen von Journalisten. Sie berufen sich dabei in der Regel auf angebliche Ausnahmen nach den jeweils gültigen Landespressegesetzen. Dass viele dieser Antwortverweigerer damit das Gesetz brechen, ist meist unbekannt. In unserer Datenbank finden Sie die Argumente, die Sie brauchen, um Ihr Recht zu durchzusetzen. <a href="#" onclick="document.getElementById('more').style.display='block';">Mehr...</a></p>
+          <div style="display:none" id="more">
+            <p>Häufig ist Unwissen der Grund für die Auskunftsverweigerung und nicht böser Wille. Denn die meisten Behörden sind schlicht unzureichend informiert, was sie sagen müssen und was sie verschweigen dürfen. Sie handeln aus Ahnungslosigkeit. Oft reicht es in diesen Fällen schon, die Auskunftsfreude zu erhören, wenn man den Behörden einen rechtlich fundierten Brief schickt, in dem man ihnen erklärt, warum sie reden müssen.</p>
+
+            <p>Und hier wollen wir helfen. In dieser Datenbank finden Sie die wichtigsten 70 Urteile zu den Landespressegesetzen. In den urteilen finden Sie die Argumente, die Sie brauchen, um eine Auskunft notfalls auch erstreiten zu können.</p>
+
+            <p>Sie können die Urteile durchstöbern, Sie können die Rechtsprechung im Volltext durchsuchen oder die entsprechenden Leitsätze durchlesen. Machen Sie sich schlau, um besser argumentieren zu können.</p>
+
+            <p>Ein Beispiel, wie Sie die Datenbank einsetzen können: Wenn Ihnen Ihre Stadt die Auskunft zu einem Honorar an kommunale Berater verweigert, weil diese „geheim“ seien, können sie in der Datenbank nach dem Stichwort „Geschäftsgeheimnis“ suchen. Sie finden dort unter anderem ein Urteil des Verwaltungsgerichtes Düsseldorf, in dem „Geschäftsgeheimnisse“ eng definiert werden. Kommunen müssen demnach bekannt machen, wem sie wie viel Geld für welche Dienstleistung gezahlt haben.</p>
+
+            <p>Wenn Sie also Ihrer Stadt einen neuen Brief schreiben, können Sie sagen, Sie hätten ein Recht auf Auskunft, weil in einem ähnlichen Fall das Verwaltungsgericht Düsseldorf die Bekanntgabe von Geschäftsgeheimnissen angeordnet hat. Sie können das Urteil zitieren und Ihre Stadt bitten, das geltende Recht einzuhalten. Meist wirkt das schon.</p>
+
+            <p>Die Datenbank wird ständig erweitert. Wenn Sie neue Urteile haben oder Ihnen bekannte wichtige Urteile in der Datenbank fehlen, lassen Sie uns das wissen. Wir ergänzen unsere Datenbank ständig.</p>
+            <p>
+              <a href="mailto:auskunftsrecht@correctiv.org">auskunftsrecht@correctiv.org</a>
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4">
           <div class="text-right" style="padding-top: 15px">
             <a href="https://www.correctiv.org/">
               <img src="{{ STATIC_URL }}img/correctiv-logo.png" alt="Correctiv"/>
@@ -45,14 +65,19 @@
   {% block footer %}
     <div class="row" style="margin-top: 3em">
       <div class="col-lg-12">
-        <p class="text-center">
-          Ihnen sind Urteile bekannt, die uns nicht bekannt sind? <a href="mailto:presserechturteile@netzwerkrecherche.org">Schicken Sie uns die Aktenzeichen!</a> Wir werden diese Datenbank entsprechend ergänzen.
-        </p>
-        <p class="text-center">
-          <small>
-            <a href="http://www.netzwerkrecherche.de/Impressum/">Impressum</a>
-          </small>
-        </p>
+        <div class="text-center">
+          <p>
+            Die Datenbank wird ständig erweitert. Wenn Sie neue Urteile haben oder Ihnen bekannte wichtige Urteile in der Datenbank fehlen, lassen Sie uns das wissen. Wir ergänzen unsere Datenbank ständig.
+          </p>
+          <p>
+            <a href="mailto:auskunftsrecht@correctiv.org">auskunftsrecht@correctiv.org</a>
+          </p>
+          <p class="text-center">
+            <small>
+              <a href="http://www.netzwerkrecherche.de/Impressum/">Impressum</a>
+            </small>
+          </p>
+        </div>
       </div>
     </div>
     {% endblock %}
