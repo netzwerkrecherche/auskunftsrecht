@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+dj-database-url = "==0.3.0"
+dj-static = "==0.0.6"
+django-haystack = "==2.3.1"
+gunicorn = "==19.2.1"
+honcho = "==0.6.4"
+psycopg2 = "*"
+pyelasticsearch = "==1.1"
+pystache = "==0.5.4"
+requests = "==2.5.1"
+simplejson = "==3.6.5"
+six = "==1.9.0"
+static = "==1.1.1"
+Django = "==1.7.4"
+unicodecsv = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "2.7"
