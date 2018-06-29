@@ -66,7 +66,7 @@ class Ruling(models.Model):
     link = models.CharField(max_length=255, blank=True)
     subject = models.TextField(blank=True)
     content = models.TextField(blank=True)
-    filename = models.CharField(max_length=255, blank=True)
+    filename = models.CharField(max_length=255, blank=True, default='')
     text = models.TextField(blank=True)
     previous = models.ForeignKey('self', null=True, related_name="next")
 
