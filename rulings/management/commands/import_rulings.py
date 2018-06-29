@@ -14,7 +14,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         translation.activate(settings.LANGUAGE_CODE)
         if len(args) > 0:
-            json_file = file(args[0])
+            json_file = open(args[0])
         else:
             json_file = sys.stdin
         for row in json.load(json_file):

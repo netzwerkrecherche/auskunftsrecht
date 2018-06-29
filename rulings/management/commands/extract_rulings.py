@@ -19,7 +19,7 @@ class Command(BaseCommand):
         if out is None:
             out = self.stdout
 
-        reader = unicodecsv.DictReader(file(csv_file), encoding='utf-8')
+        reader = unicodecsv.DictReader(open(csv_file), encoding='utf-8')
         all_urteile = []
         for urteil in reader:
             filename = '%s.pdf' % urteil['Aktenzeichen'].replace('/', '.')
@@ -37,12 +37,12 @@ class Command(BaseCommand):
     def get_content(self, filename):
         text_file = filename.rsplit('.', 1)[0] + '.txt'
         if os.path.exists(text_file):
-            return file(text_file).read().decode('utf-8')
+            return open(text_file).read().decode('utf-8')
         process = subprocess.Popen(['pdftotext', filename],
                                    stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         process.communicate()
         if process.returncode != 0:
             return None
-        with file(text_file) as f:
+        with open(text_file) as f:
             text = f.read()
         return text.decode('utf-8')
