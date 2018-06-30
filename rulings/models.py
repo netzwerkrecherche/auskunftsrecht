@@ -24,6 +24,8 @@ class RulingManager(models.Manager):
         for key, attr in self.MAPPING.items():
             setattr(ruling, attr, row[key])
 
+        ruling.filename = ruling.filename or ''
+
         ruling.value_currency = 'EUR'
         value = row['Streitwert']
         value = value.strip()
