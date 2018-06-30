@@ -1,5 +1,5 @@
-import unicodecsv
 import json
+import csv
 import subprocess
 import os
 
@@ -11,15 +11,19 @@ from django.conf import settings
 class Command(BaseCommand):
     help = "Extract CSV: python manage.py extract_ruling <csv_file> <path>"
 
+    def add_arguments(self, parser):
+        parser.add_argument('csv_file', type=str)
+        parser.add_argument('path', type=str)
+
     def handle(self, *args, **options):
         translation.activate(settings.LANGUAGE_CODE)
-        self.get_json(args[0], args[1])
+        self.get_json(options['csv_file'], options['path'])
 
     def get_json(self, csv_file, path, out=None):
         if out is None:
             out = self.stdout
 
-        reader = unicodecsv.DictReader(open(csv_file), encoding='utf-8')
+        reader = csv.DictReader(open(csv_file))
         all_urteile = []
         for urteil in reader:
             filename = '%s.pdf' % urteil['Aktenzeichen'].replace('/', '.')
@@ -37,7 +41,7 @@ class Command(BaseCommand):
     def get_content(self, filename):
         text_file = filename.rsplit('.', 1)[0] + '.txt'
         if os.path.exists(text_file):
-            return open(text_file).read().decode('utf-8')
+            return open(text_file).read()
         process = subprocess.Popen(['pdftotext', filename],
                                    stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         process.communicate()
@@ -45,4 +49,4 @@ class Command(BaseCommand):
             return None
         with open(text_file) as f:
             text = f.read()
-        return text.decode('utf-8')
+        return text
