@@ -22,9 +22,7 @@ class RulingManager(models.Manager):
         if ruling is None:
             ruling = Ruling()
         for key, attr in self.MAPPING.items():
-            setattr(ruling, attr, row[key])
-
-        ruling.filename = ruling.filename or ''
+            setattr(ruling, attr, row[key] or '')
 
         ruling.value_currency = 'EUR'
         value = row['Streitwert']
