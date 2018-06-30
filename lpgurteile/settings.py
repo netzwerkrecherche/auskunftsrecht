@@ -30,9 +30,30 @@ DEBUG = get_env('DJANGO_DEBUG', 'false') == 'true'
 
 TEMPLATE_DEBUG = DEBUG
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "lpgurteile", "templates"),
-)
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, "lpgurteile", "templates"),
+        ],
+        'OPTIONS': {
+            'debug': DEBUG,
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ],
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+            ]
+        }
+    }
+]
 
 
 ALLOWED_HOSTS = [get_env('DJANGO_ALLOWED_HOSTS', '*')]
@@ -53,7 +74,7 @@ INSTALLED_APPS = (
     'rulings',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

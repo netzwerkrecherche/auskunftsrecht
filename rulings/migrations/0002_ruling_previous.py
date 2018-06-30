@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='ruling',
             name='previous',
-            field=models.ForeignKey(related_name='next', to='rulings.Ruling', null=True),
+            field=models.ForeignKey(related_name='next', to='rulings.Ruling', null=True, on_delete=models.SET_NULL),
             preserve_default=True,
         ),
     ]

@@ -1,7 +1,7 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import re_path
 
+from .views import show_ruling
 
-urlpatterns = patterns('',
-    # Examples:
-    url(r'^(?P<slug>[\w-]+)/$', 'rulings.views.show_ruling', name='show_ruling'),
-)
+urlpatterns = [
+    re_path(r'^(?P<slug>[\w-]+)/$', show_ruling, name='show_ruling'),
+]

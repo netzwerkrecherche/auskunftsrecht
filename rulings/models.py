@@ -1,7 +1,7 @@
 import decimal
 
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.template.defaultfilters import slugify
 
 
@@ -68,7 +68,10 @@ class Ruling(models.Model):
     content = models.TextField(blank=True)
     filename = models.CharField(max_length=255, blank=True, default='')
     text = models.TextField(blank=True)
-    previous = models.ForeignKey('self', null=True, related_name="next")
+    previous = models.ForeignKey(
+        'self', null=True, related_name="next",
+        on_delete=models.SET_NULL
+    )
 
     objects = RulingManager()
 

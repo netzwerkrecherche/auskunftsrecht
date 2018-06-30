@@ -4,22 +4,21 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-dj-database-url = "==0.3.0"
-dj-static = "==0.0.6"
-django-haystack = "==2.3.1"
-gunicorn = "==19.2.1"
-honcho = "==0.6.4"
+dj-database-url = "*"
+dj-static = "*"
+django-haystack = "*"
+gunicorn = "*"
+honcho = "*"
 psycopg2 = "*"
-pyelasticsearch = "==1.1"
-pystache = "==0.5.4"
-requests = "==2.5.1"
-simplejson = "==3.6.5"
-six = "==1.9.0"
-static = "==1.1.1"
-Django = "==1.7.4"
+pystache = "*"
+requests = "*"
+simplejson = "*"
+static = "*"
+Django = "==2.0"
 unicodecsv = "*"
+elasticsearch = ">=2.0.0,<3.0.0"
 
 [dev-packages]
 
 [requires]
-python_version = "2.7"
+python_version = "3.6"

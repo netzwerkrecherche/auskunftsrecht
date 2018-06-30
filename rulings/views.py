@@ -1,5 +1,4 @@
-from urllib import urlencode
-from urlparse import urlparse, parse_qsl
+from urllib.parse import urlencode, urlparse, parse_qsl
 
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings

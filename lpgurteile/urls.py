@@ -1,23 +1,25 @@
-from django.conf.urls import patterns, include, url
+from django.urls import include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from rulings.views import search
+
 admin.autodiscover()
 
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Examples:
     # url(r'^$', 'lpgurteile.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^$', 'rulings.views.search', name='haystack_search'),
+    re_path(r'^$', search, name='haystack_search'),
 
-    url(r'^urteil/', include('rulings.urls')),
+    re_path(r'^urteil/', include('rulings.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
-)
+    re_path(r'^admin/', admin.site.urls),
+]
 
 
 if settings.DEBUG:
