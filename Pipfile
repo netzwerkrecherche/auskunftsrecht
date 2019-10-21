@@ -14,7 +14,7 @@ pystache = "*"
 requests = "*"
 simplejson = "*"
 static = "*"
-Django = "==2.0"
+Django = "==2.0.12"
 elasticsearch = ">=2.0.0,<3.0.0"
 
 [dev-packages]
